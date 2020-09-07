@@ -13,13 +13,13 @@ client_id = config.get('SPOTIFY', 'CLIENT_ID')
 client_secret = config.get('SPOTIFY', 'CLIENT_SECRET')
 
 
-
 auth = oauth2.SpotifyClientCredentials(
     client_id=client_id,
     client_secret=client_secret
 )
 
-
+youtube = false
+apple = false
 
 # Allow user to enter their desired playlist to transfer
 while True:
@@ -42,7 +42,6 @@ while True:
                 continue
             break
         break
-
 
 sp = spotipy.Spotify(auth.get_access_token())
 
@@ -76,13 +75,12 @@ for item in songs:
     print(item)
 
 
-
 def toYoutube():
     scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
     api_service_name = "youtube"
     api_version = "v3"
-    clients_secrets_file = "client_secret_1051082308142-ugqeo2tk0idgvjim46eft2i0i6mnt0nb.apps.googleusercontent.com.json"
+    clients_secrets_file = "your_secret_key.json"
 
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(clients_secrets_file, scopes)
     credentials = flow.run_console()
